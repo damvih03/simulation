@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ConsoleMessage {
 
-    public void showGreetingMessage() {
+    public void showGreeting() {
         System.out.println("Начинаем симуляцию!");
     }
 

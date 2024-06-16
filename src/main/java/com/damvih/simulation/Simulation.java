@@ -50,7 +50,7 @@ public class Simulation {
     }
 
     public void start() {
-        consoleMessage.showGreetingMessage();
+        consoleMessage.showGreeting();
         runActions(initActions);
         int movesCount = 0;
         while (true) {
