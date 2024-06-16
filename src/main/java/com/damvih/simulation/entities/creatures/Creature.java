@@ -47,8 +47,8 @@ abstract public class Creature extends Entity {
         if (!path.isEmpty()) {
             for (int i = 0; i < speed; i++) {
                 Coordinates nextCoordinates = path.peek();
-                Entity nextEntity = worldMap.getEntity(nextCoordinates);
-                if (nextEntity != null && nextEntity.getClass().equals(target)) {
+                if (isCellAvailableForAttack(worldMap, nextCoordinates)) {
+                    Entity nextEntity = worldMap.getEntity(nextCoordinates);
                     attack(worldMap, nextEntity);
                     return;
                 }
@@ -59,6 +59,14 @@ abstract public class Creature extends Entity {
             }
         }
         decreaseHealthPointsDueToHunger();
+    }
+
+    private boolean isCellAvailableForAttack(WorldMap worldMap, Coordinates coordinates) {
+        if (!worldMap.isCellEmpty(coordinates)) {
+            Entity entity = worldMap.getEntity(coordinates);
+            return entity != null && entity.getClass().equals(target);
+        }
+        return false;
     }
 
     protected void eat(int foodValue) {
