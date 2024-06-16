@@ -17,7 +17,7 @@ public class CreatureMoveAction implements Action {
                 creature.makeMove(worldMap);
             }
             else {
-                worldMap.removeEntity(creature.coordinates);
+                worldMap.removeEntity(creature.getCoordinates());
             }
         }
     }

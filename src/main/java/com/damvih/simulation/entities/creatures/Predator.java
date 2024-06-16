@@ -20,7 +20,7 @@ public class Predator extends Creature {
         if (!herbivore.isAlive()) {
             herbivore.setHealthPoints(0);
             eat(herbivore.foodValue);
-            worldMap.removeEntity(herbivore.coordinates);
+            worldMap.removeEntity(herbivore.getCoordinates());
         }
     }
 

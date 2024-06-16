@@ -18,7 +18,7 @@ public class Herbivore extends Creature {
     public void attack(WorldMap worldMap, Entity target) {
         Grass grass = (Grass) target;
         eat(grass.foodValue);
-        worldMap.removeEntity(grass.coordinates);
+        worldMap.removeEntity(grass.getCoordinates());
     }
 
 }

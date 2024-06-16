@@ -27,7 +27,7 @@ public class WorldMap {
     }
 
     public void setEntity(Coordinates coordinates, Entity entity) {
-        entity.coordinates = coordinates;
+        entity.setCoordinates(coordinates);
         entities.put(coordinates, entity);
     }
 

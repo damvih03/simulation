@@ -43,7 +43,7 @@ abstract public class Creature extends Entity {
     abstract protected void attack(WorldMap worldMap, Entity target);
 
     public void makeMove(WorldMap worldMap) {
-        Stack<Coordinates> path = WorldMapRouter.getPath(this.coordinates, target, worldMap);
+        Stack<Coordinates> path = WorldMapRouter.getPath(getCoordinates(), target, worldMap);
         if (!path.isEmpty()) {
             for (int i = 0; i < speed; i++) {
                 Coordinates nextCoordinates = path.peek();
@@ -53,7 +53,7 @@ abstract public class Creature extends Entity {
                     return;
                 }
                 else {
-                    worldMap.moveEntity(this.coordinates, nextCoordinates);
+                    worldMap.moveEntity(getCoordinates(), nextCoordinates);
                 }
                 path.pop();
             }

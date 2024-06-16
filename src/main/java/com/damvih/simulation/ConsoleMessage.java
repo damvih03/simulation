@@ -23,7 +23,8 @@ public class ConsoleMessage {
         List<Entity> creatures = worldMap.getEntitiesByType(Creature.class);
         for (Entity entity : creatures) {
             Creature creature = (Creature) entity;
-            String coordinates = "[X: " + creature.coordinates.x + " | Y: " + creature.coordinates.y + "] ";
+            Coordinates creatureCoordinates = creature.getCoordinates();
+            String coordinates = "[X: " + creatureCoordinates.x + " | Y: " + creatureCoordinates.y + "] ";
             String creatureName = creature instanceof Predator ? "Хищник" : "Травоядный";
             String healthPoints = " | Здоровье: " + creature.getHealthPoints() + "/" + creature.maxHealthPoints;
             String line = coordinates + creatureName + healthPoints;
