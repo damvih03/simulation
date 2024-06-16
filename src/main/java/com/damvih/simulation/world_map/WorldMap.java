@@ -19,7 +19,11 @@ public class WorldMap {
     }
 
     public Entity getEntity(Coordinates coordinates) {
-        return entities.get(coordinates);
+        Entity entity = entities.get(coordinates);
+        if (entity != null) {
+            return entity;
+        }
+        throw new IllegalArgumentException("There is no entity on this coordinates");
     }
 
     public void setEntity(Coordinates coordinates, Entity entity) {
