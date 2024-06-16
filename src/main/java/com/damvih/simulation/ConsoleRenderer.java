@@ -5,9 +5,16 @@ import com.damvih.simulation.world_map.WorldMap;
 
 public class ConsoleRenderer {
 
+    public static final String GROUND_SPRITE = "\uD83D\uDFEB";
+    public static final String HERBIVORE_SPRITE = "\uD83D\uDC30";
+    public static final String PREDATOR_SPRITE = "\uD83E\uDD8A";
+    public static final String GRASS_SPRITE = "\uD83C\uDF40";
+    public static final String TREE_SPRITE = "\uD83C\uDF32";
+    public static final String ROCK_SPRITE = "⚫";
+
     private void renderDelimiter(int length) {
-        char delimiter = '-';
-        System.out.println(String.valueOf(delimiter).repeat(Math.max(0, length)));
+        String delimiter = "-";
+        System.out.println(delimiter.repeat(Math.max(0, length)));
     }
 
     public void render(WorldMap worldMap) {
@@ -18,11 +25,12 @@ public class ConsoleRenderer {
             for (int j = 0; j < worldMap.height; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
                 if (worldMap.isCellEmpty(coordinates)) {
-                    line += "\uD83D\uDFEB" + " ";
+                    line += GROUND_SPRITE;
                 } else {
                     Entity entity = worldMap.getEntity(coordinates);
                     line += selectSpriteForEntity(entity);
                 }
+                line += " ";
             }
             System.out.println(line);
         }
@@ -31,17 +39,18 @@ public class ConsoleRenderer {
     private String selectSpriteForEntity(Entity entity) {
         switch (entity.getClass().getSimpleName()) {
             case "Herbivore":
-                return "\uD83D\uDC30" + " ";
+                return HERBIVORE_SPRITE;
             case "Predator":
-                return "\uD83E\uDD8A" + " ";
+                return PREDATOR_SPRITE;
             case "Grass":
-                return "\uD83C\uDF40" + " ";
+                return GRASS_SPRITE;
             case "Tree":
-                return "\uD83C\uDF32" + " ";
+                return TREE_SPRITE;
             case "Rock":
-                return "⚫" + " ";
+                return ROCK_SPRITE;
+            default:
+                throw new IllegalArgumentException("Unknown entity");
         }
-        return "";
     }
 
     private static void clearConsole() {
