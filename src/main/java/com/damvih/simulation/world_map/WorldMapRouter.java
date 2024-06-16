@@ -25,10 +25,10 @@ public class WorldMapRouter {
     }
 
     public static boolean isTarget(Coordinates currentCoordinates, Class<? extends Entity> target, final WorldMap worldMap) {
-        Entity entity = worldMap.getEntity(currentCoordinates);
-        if (entity == null) {
+        if (worldMap.isCellEmpty(currentCoordinates)) {
             return false;
         }
+        Entity entity = worldMap.getEntity(currentCoordinates);
         return entity.getClass().equals(target);
     }
 
