@@ -34,9 +34,9 @@ public class WorldMapRouter {
 
     public static Stack<Coordinates> getPath(Coordinates start, Class<? extends Entity> target, final WorldMap worldMap) {
         Coordinates currentCoordinates;
-        ArrayDeque<Coordinates> unexplored = new ArrayDeque<>();
-        HashSet<Coordinates> visited = new HashSet<>();
-        HashMap<Coordinates, Coordinates> toFrom = new HashMap<>();
+        Deque<Coordinates> unexplored = new ArrayDeque<>();
+        Set<Coordinates> visited = new HashSet<>();
+        Map<Coordinates, Coordinates> toFrom = new HashMap<>();
         unexplored.addLast(start);
         while (!unexplored.isEmpty()) {
             currentCoordinates = unexplored.removeFirst();
@@ -56,7 +56,7 @@ public class WorldMapRouter {
         return new Stack<>();
     }
 
-    private static Stack<Coordinates> findPath(HashMap<Coordinates, Coordinates> toFrom, Coordinates currentCoordinates) {
+    private static Stack<Coordinates> findPath(Map<Coordinates, Coordinates> toFrom, Coordinates currentCoordinates) {
         Stack<Coordinates> path = new Stack<>();
         while (currentCoordinates != null) {
             path.push(currentCoordinates);
