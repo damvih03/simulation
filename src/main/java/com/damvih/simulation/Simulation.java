@@ -1,7 +1,7 @@
 package com.damvih.simulation;
 
 import com.damvih.simulation.actions.Action;
-import com.damvih.simulation.actions.CreatureMoveAction;
+import com.damvih.simulation.actions.CreatureAction;
 import com.damvih.simulation.actions.SpawnAction;
 import com.damvih.simulation.entities.Grass;
 import com.damvih.simulation.entities.Rock;
@@ -42,7 +42,7 @@ public class Simulation {
         initActions.add(new SpawnAction(worldMap, 20, () -> new Herbivore(3, 20, 2, Grass.class, 5)));
         initActions.add(new SpawnAction(worldMap, 50, () -> new Predator(2, 25, 3, Herbivore.class ,5)));
         initActions.add(grassSpawnAction);
-        turnActions.add(new CreatureMoveAction(worldMap));
+        turnActions.add(new CreatureAction(worldMap));
         turnActions.add(grassSpawnAction);
     }
 

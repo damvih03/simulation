@@ -6,9 +6,9 @@ import com.damvih.simulation.entities.creatures.Creature;
 
 import java.util.List;
 
-public class CreatureMoveAction extends Action {
+public class CreatureAction extends Action {
 
-    public CreatureMoveAction(WorldMap worldMap) {
+    public CreatureAction(WorldMap worldMap) {
         super(worldMap);
     }
 
