@@ -16,9 +16,9 @@ public class PredatorSpawnAction extends CreatureSpawnAction {
     }
 
     @Override
-    public Entity createEntity(Coordinates coordinates) {
+    public Entity createEntity() {
         Class<? extends Entity> target = Herbivore.class;
-        return new Predator(coordinates, speed, healthPoints, hunger, target, power);
+        return new Predator(speed, healthPoints, hunger, target, power);
     }
 
 }

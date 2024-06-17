@@ -19,8 +19,7 @@ abstract public class Creature extends Entity {
 
     public final Class<? extends Entity> target;
 
-    public Creature(Coordinates coordinates, int speed, int healthPoints, int hunger, Class<? extends Entity> target) {
-        super(coordinates);
+    public Creature(int speed, int healthPoints, int hunger, Class<? extends Entity> target) {
         this.speed = speed;
         this.healthPoints = healthPoints;
         this.hunger = hunger;

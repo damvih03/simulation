@@ -15,8 +15,8 @@ public class GrassSpawnAction extends SpawnAction {
     }
 
     @Override
-    public Entity createEntity(Coordinates coordinates) {
-        return new Grass(coordinates, foodValue);
+    public Entity createEntity() {
+        return new Grass(foodValue);
     }
 
     @Override

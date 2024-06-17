@@ -12,8 +12,8 @@ public class RockSpawnAction extends SpawnAction {
     }
 
     @Override
-    public Entity createEntity(Coordinates coordinates) {
-        return new Rock(coordinates);
+    public Entity createEntity() {
+        return new Rock();
     }
 
 }

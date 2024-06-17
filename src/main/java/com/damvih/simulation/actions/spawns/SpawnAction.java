@@ -15,11 +15,12 @@ abstract public class SpawnAction implements Action {
         this.entitiesNumber = worldMap.width * worldMap.height / rate;
     }
 
-    abstract public Entity createEntity(Coordinates coordinates);
+    abstract public Entity createEntity();
 
     public void spawnEntity(WorldMap worldMap) {
         Coordinates coordinates = getRandomEmptyCell(worldMap);
-        Entity entity = createEntity(coordinates);
+        Entity entity = createEntity();
+        entity.setCoordinates(coordinates);
         worldMap.setEntity(coordinates, entity);
     }
 
