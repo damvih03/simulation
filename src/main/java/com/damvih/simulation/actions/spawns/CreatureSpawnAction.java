@@ -1,5 +1,6 @@
 package com.damvih.simulation.actions.spawns;
 
+import com.damvih.simulation.actions.SpawnAction;
 import com.damvih.simulation.world_map.WorldMap;
 
 abstract public class CreatureSpawnAction extends SpawnAction {

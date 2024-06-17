@@ -1,4 +1,4 @@
-package com.damvih.simulation.actions.spawns;
+package com.damvih.simulation.actions;
 
 import com.damvih.simulation.Coordinates;
 import com.damvih.simulation.world_map.WorldMap;
