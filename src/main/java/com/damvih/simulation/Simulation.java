@@ -27,7 +27,7 @@ public class Simulation {
 
     private final List<Action> turnActions = new ArrayList<>();
 
-    public final ConsoleMessage consoleMessage = new ConsoleMessage();
+    private final ConsoleMessage consoleMessage = new ConsoleMessage();
 
     public Simulation(WorldMap worldMap, ConsoleRenderer renderer) {
         this.worldMap = worldMap;
@@ -35,7 +35,7 @@ public class Simulation {
         createActions();
     }
 
-    public void createActions() {
+    private void createActions() {
         SpawnAction grassSpawnAction = new SpawnAction(worldMap, 15, () -> new Grass(1));
         initActions.add(new SpawnAction(worldMap, 25, Rock::new));
         initActions.add(new SpawnAction(worldMap, 30, Tree::new));
@@ -46,7 +46,7 @@ public class Simulation {
         turnActions.add(grassSpawnAction);
     }
 
-    public void runActions(List<Action> actions) {
+    private void runActions(List<Action> actions) {
         for (Action action : actions) {
             action.perform();
         }
@@ -72,7 +72,7 @@ public class Simulation {
         consoleMessage.showFinishMessage(movesCount, state);
     }
 
-    public SimulationStates determineState() {
+    private SimulationStates determineState() {
         if (worldMap.getEntitiesByType(Herbivore.class).isEmpty()) {
             return SimulationStates.HERBIVORE_DEAD;
         } else if (worldMap.getEntitiesByType(Predator.class).isEmpty()) {
