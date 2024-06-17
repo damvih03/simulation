@@ -2,7 +2,10 @@ package com.damvih.simulation;
 
 import com.damvih.simulation.actions.Action;
 import com.damvih.simulation.actions.CreatureMoveAction;
-import com.damvih.simulation.actions.spawns.*;
+import com.damvih.simulation.actions.SpawnAction;
+import com.damvih.simulation.entities.Grass;
+import com.damvih.simulation.entities.Rock;
+import com.damvih.simulation.entities.Tree;
 import com.damvih.simulation.entities.creatures.Herbivore;
 import com.damvih.simulation.entities.creatures.Predator;
 import com.damvih.simulation.world_map.WorldMap;
@@ -33,19 +36,19 @@ public class Simulation {
     }
 
     public void createActions() {
-        GrassSpawnAction grassSpawnAction = new GrassSpawnAction(worldMap, 15, 1);
-        initActions.add(new RockSpawnAction(worldMap, 25));
-        initActions.add(new TreeSpawnAction(worldMap, 30));
-        initActions.add(new HerbivoreSpawnAction(worldMap, 20, 20, 3, 2, 5));
-        initActions.add(new PredatorSpawnAction(worldMap, 50, 25, 2, 3, 5));
+        SpawnAction grassSpawnAction = new SpawnAction(worldMap, 15, () -> new Grass(1));
+        initActions.add(new SpawnAction(worldMap, 25, Rock::new));
+        initActions.add(new SpawnAction(worldMap, 30, Tree::new));
+        initActions.add(new SpawnAction(worldMap, 20, () -> new Herbivore(3, 20, 2, Grass.class, 5)));
+        initActions.add(new SpawnAction(worldMap, 50, () -> new Predator(2, 25, 3, Herbivore.class ,5)));
         initActions.add(grassSpawnAction);
-        turnActions.add(new CreatureMoveAction());
+        turnActions.add(new CreatureMoveAction(worldMap));
         turnActions.add(grassSpawnAction);
     }
 
     public void runActions(List<Action> actions) {
         for (Action action : actions) {
-            action.perform(worldMap);
+            action.perform();
         }
     }
 

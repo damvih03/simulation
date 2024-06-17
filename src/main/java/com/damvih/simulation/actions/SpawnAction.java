@@ -2,29 +2,31 @@ package com.damvih.simulation.actions;
 
 import com.damvih.simulation.Coordinates;
 import com.damvih.simulation.world_map.WorldMap;
-import com.damvih.simulation.actions.Action;
 import com.damvih.simulation.entities.Entity;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
-abstract public class SpawnAction implements Action {
+public class SpawnAction extends Action {
 
-    public final int entitiesNumber;
+    protected final int entitiesNumber;
+    private final Supplier<Entity> supplier;
 
-    public SpawnAction(WorldMap worldMap, int rate) {
+
+    public SpawnAction(WorldMap worldMap, int rate, Supplier<Entity> supplier) {
+        super(worldMap);
         this.entitiesNumber = worldMap.width * worldMap.height / rate;
+        this.supplier = supplier;
     }
 
-    abstract public Entity createEntity();
-
-    public void spawnEntity(WorldMap worldMap) {
-        Coordinates coordinates = getRandomEmptyCell(worldMap);
-        Entity entity = createEntity();
+    protected void spawnEntity() {
+        Coordinates coordinates = getRandomEmptyCell();
+        Entity entity = supplier.get();
         entity.setCoordinates(coordinates);
         worldMap.setEntity(coordinates, entity);
     }
 
-    private Coordinates getRandomEmptyCell(WorldMap worldMap) {
+    private Coordinates getRandomEmptyCell() {
         Coordinates coordinates;
         Random random = new Random();
         do {
@@ -34,9 +36,10 @@ abstract public class SpawnAction implements Action {
     }
 
     @Override
-    public void perform(WorldMap worldMap) {
-        for (int i = 0; i < entitiesNumber; i++) {
-            spawnEntity(worldMap);
+    public void perform() {
+        Class<? extends Entity> entityType = supplier.get().getClass();
+        while (worldMap.getEntitiesByType(entityType).size() < entitiesNumber) {
+            spawnEntity();
         }
     }
 

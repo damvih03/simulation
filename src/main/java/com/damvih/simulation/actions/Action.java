@@ -2,8 +2,14 @@ package com.damvih.simulation.actions;
 
 import com.damvih.simulation.world_map.WorldMap;
 
-public interface Action {
+abstract public class Action {
 
-    void perform(WorldMap worldMap);
+    protected final WorldMap worldMap;
+
+    public Action(WorldMap worldMap) {
+        this.worldMap = worldMap;
+    }
+
+    abstract public void perform();
 
 }

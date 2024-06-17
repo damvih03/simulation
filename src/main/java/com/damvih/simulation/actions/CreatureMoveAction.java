@@ -6,10 +6,14 @@ import com.damvih.simulation.entities.creatures.Creature;
 
 import java.util.List;
 
-public class CreatureMoveAction implements Action {
+public class CreatureMoveAction extends Action {
+
+    public CreatureMoveAction(WorldMap worldMap) {
+        super(worldMap);
+    }
 
     @Override
-    public void perform(WorldMap worldMap) {
+    public void perform() {
         List<Entity> creatures = worldMap.getEntitiesByType(Creature.class);
         for (var entity : creatures) {
             Creature creature = (Creature)entity;
